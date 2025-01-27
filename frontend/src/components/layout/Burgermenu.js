@@ -17,7 +17,6 @@ export default function Burgermenu() {
             <div
                 id="menu"
                 className="h-full w-96 absolute top-0 right-0 hidden bg-black text-white">
-                burgermenu
             </div>
         </div>
     );

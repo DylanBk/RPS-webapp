@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <div>
             <img
-                className="w-full absolute inset-0"
+                className="h-full w-full fixed object-cover"
                 src={bg}
                 alt="Gradient background"
             />
