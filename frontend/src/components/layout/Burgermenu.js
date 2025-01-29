@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import handleBurgermenu from "../../utils/handleBurgermenu";
 
 export default function Burgermenu() {
+    // useEffect(() => { //TODO: allow menu to be closed with esc key
+    //     if (document.getElementById('menu') && document.getElementById('menu').style.display === 'flex')
+    //     window.addEventListener('keydown', (e) => {
+    //         if (e.key === 'Escape') {
+    //             window.alert('esc')
+    //             handleBurgermenu()
+    //         };
+    //     });
+    // }, []);
+
     return (
         <div>
             <div
