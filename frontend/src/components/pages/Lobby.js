@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Game() {
+export default function Lobby() {
     return (
         <div></div>
     );

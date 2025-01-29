@@ -13,6 +13,10 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 def handle_connect():
     print("Client connected to server")
 
+@socket.on('message')
+def handle_message(data):
+    print(f"data sent from client: {data}")
+
 @socket.on('disconnect')
 def handle_disconnect():
     print("Client disconnected from server")
