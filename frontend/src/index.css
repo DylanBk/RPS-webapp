@@ -6,15 +6,35 @@
   --bg: #212121;
   --carbon: #1c1c1c;
   --primary-blue: #35A3D9;
+  --secondary-blue: #158ac4;
   --white-30: rgba(255, 255, 255, 0.3);
   --black-40: rgba(0, 0, 0, 0.4);
   --black-50: rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+  font-family: 'Baloo 2';
+  src: url('./fonts/Baloo2-VariableFont_wght.ttf');
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Baloo 2';
+}
+
+.primary-btn {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin: 0 auto;
+  background: var(--primary-blue);
+  color: white;
+  transition: all 0.3s;
+}
+.primary-btn:hover {
+  background: var(--secondary-blue);
 }
 
 .menu-btn {
@@ -32,6 +52,56 @@
 .menu-btn:hover {
   background: var(--black-50);
   scale: 1.05;
+}
+
+.text-input {
+  padding: 0.5rem 1rem;
+  border: solid 1px white;
+  border-radius: 0.25rem;
+  background: var(--carbon);
+  color: white;
+}
+.text-input:-webkit-autofill,
+.text-input:-webkit-autofill:hover,
+.text-input:-webkit-autofill:focus,
+.text-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--carbon) inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+
+.loader div:nth-child(1) {
+  animation: loading1 2s infinite ease-in-out;
+  animation-timing-function: cubic-bezier(0.8, 0, 0.2, 1.4);
+}
+.loader div:nth-child(2) {
+  animation: loading2 2s infinite ease-in-out;
+  animation-timing-function: cubic-bezier(0.8, 0, 0.2, 1.4);
+}
+.loader div:nth-child(3) {
+  animation: loading3 2s infinite ease-in-out;
+  animation-timing-function: cubic-bezier(0.8, 0, 0.2, 1.4);
+}
+
+@keyframes loading1 {
+  0% {transform: translateY(0rem);}
+  10% {transform: translateY(0rem);}
+  40% {transform: translateY(1rem);}
+  100% {transform: translateY(0rem);}
+}
+@keyframes loading2 {
+  0% {transform: translateY(0rem);}
+  20% {transform: translateY(0rem);}
+  50% {transform: translateY(1rem);}
+  60% {transform: translateY(1rem);}
+  100% {transform: translateY(0rem);}
+}
+@keyframes loading3 {
+  0% {transform: translateY(0rem);}
+  30% {transform: translateY(0rem);}
+  60% {transform: translateY(1rem);}
+  80% {transform: translateY(1rem);}
+  100% {transform: translateY(0rem);}
 }
 
 .game-opt {
