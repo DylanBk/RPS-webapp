@@ -127,6 +127,9 @@ def check_pw(email, pw):
 
     return bcrypt.checkpw(b, h_pw)
 
+def get_session_data(email):
+    with Session() as s:
+        pass
 
 # CRUD
 

@@ -73,13 +73,33 @@ def signup():
     if request.method == 'POST':
         username, email, pw = request.get_json().values()
         print(username, email, pw)
-        if db.user_exists():
+        if db.user_exists(email):
             return jsonify({"error": "A user with that email already exists"})
 
         db.create_user(email, pw, username)
 
         return jsonify({"message": "Signed up successfully"}), 200
     return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if session:
+        return jsonify({"error": "Already signed in"}), 400
+    if request.method == 'POST':
+        email, pw = request.get_json().values()
+        print(email, pw)
+        if db.user_exists(email):
+            if db.check_pw(email, pw):
+                data = db.get_session_data(email)
+
+                session['id'] = data['id']
+                session['email'] = email
+                session['role'] = data['role']
+
+                return jsonify({"message": "User signed in successfully"}), 200
+            return jsonify({"error": "Incorrect Password"}), 400
+        return jsonify({"error": "A user with that email does not exist"}), 400
+
 
 if __name__ == "__main__":
     socket.run(app)
