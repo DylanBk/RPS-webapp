@@ -33,8 +33,33 @@
   color: white;
   transition: all 0.3s;
 }
-.primary-btn:hover {
+.primary-btn:hover, .primary-btn:focus {
   background: var(--secondary-blue);
+}
+
+.secondary-btn {
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: solid 2px var(--primary-blue);
+  border-radius: 0.25rem;
+  outline-offset: 1px;
+  color: #ffffffee;
+  transition: all 0.3s;
+}
+.secondary-btn:hover, .secondary-btn:focus {
+  border-color: var(--secondary-blue);
+  color: white;
+}
+
+.glass-btn {
+  padding: 0.25rem;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.glass-btn:hover, .glass-btn:focus {
+  background: #FFFFFF20;
 }
 
 .menu-btn {

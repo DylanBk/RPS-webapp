@@ -4,8 +4,12 @@ import hide from '../../media/icons/hide.svg';
 import show from '../../media/icons/show.svg';
 
 export default function Signup({onFormChange}) {
-    const [formData, setFormData] = useState();
-    const [errMsg, setErrMsg] = useState('');
+    const [formData, setFormData] = useState({
+        'username': '',
+        'email': '',
+        'pw': ''
+    });
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -18,8 +22,8 @@ export default function Signup({onFormChange}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!document.getElementsByName('confirm-pw')[0] === formData['pw']) {
-            console.log('')
+        if (document.getElementsByName('confirm-pw')[0].value !== formData['pw']) {
+            setError("Passwords must match")
             return;
         };
 
@@ -32,17 +36,28 @@ export default function Signup({onFormChange}) {
 
         if (res.message) {
             onFormChange();
+        } else {
+            setError(res.error);
         };
     };
 
     const togglePw = (e) => {
+        const btn = e.target;
         const el = e.target.previousSibling;
 
         if (el.type === 'text') {
             el.type = 'password';
+            btn.src = show;
         } else {
             el.type = 'text';
+            btn.src = hide;
         };
+    };
+
+    const handleKey = (e) => {
+        if (e.keyCode === 13) {
+            togglePw(e)
+        }
     };
 
     return (
@@ -75,10 +90,12 @@ export default function Signup({onFormChange}) {
                             onChange={handleChange}
                         />
                         <img
-                            className="w-5 absolute right-12 cursor-pointer"
+                            className="min-w-5 absolute right-12 p-1 rounded-full hover:bg-white hover:bg-opacity-10 cursor-pointer"
                             src={show}
                             alt="Show password icon"
+                            tabIndex={0}
                             onClick={togglePw}
+                            onKeyDown={handleKey}
                         />
                     </div>
                     <div className="flex flex-row items-center">
@@ -90,17 +107,18 @@ export default function Signup({onFormChange}) {
                             required
                         />
                         <img
-                            className="w-5 absolute right-12 cursor-pointer"
+                            className="min-w-5 absolute right-12 p-1 rounded-full hover:bg-white hover:bg-opacity-10 cursor-pointer"
                             src={show}
                             alt="Show password icon"
+                            tabIndex={0}
                             onClick={togglePw}
+                            onKeyDown={handleKey}
                         />
                     </div>
-                    <p>{errMsg}</p>
+                    <p className="text-center text-red-400">{error}</p>
                     <button
-                        className="primary-btn"
-                        type="submit"
-                        >
+                        className="primary-btn sm:hover:px-20 sm:focus:px-20"
+                        type="submit">
                         Sign Up
                     </button>
             </form>

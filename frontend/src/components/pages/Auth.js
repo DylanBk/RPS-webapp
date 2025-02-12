@@ -12,10 +12,12 @@ export default function Auth() {
     useEffect(() => {
         if (window.location.href.includes('login')) {
             setIsLogin(true);
-        };
+        } else {
+            setIsLogin(false);
+        }
     }, []);
 
-    const handleFormChange = () => {
+    const onFormChange = () => {
         if (isLogin) {
             setIsLogin(false);
         } else {
@@ -34,9 +36,9 @@ export default function Auth() {
             <Burgermenu />
 
             { isLogin ? (
-                <Login onFormChange={handleFormChange} />
+                <Login changeForm={onFormChange} />
             ) : (
-                <Signup onFormChange={handleFormChange} />
+                <Signup changeForm={onFormChange} />
             )}
         </div>
     );
